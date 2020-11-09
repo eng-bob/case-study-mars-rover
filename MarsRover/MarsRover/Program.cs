@@ -8,8 +8,10 @@ namespace MarsRover
 {
     class Program
     {
-        static int PLATEAU_BORDER_X = 0;
-        static int PLATEAU_BORDER_Y = 0;
+        static int PLATEAU_LOWER_BOUNDRY_BORDER_X = 0;
+        static int PLATEAU_LOWER_BOUNDRY_BORDER_Y = 0;
+        static int PLATEAU_UPPER_BOUNDRY_BORDER_X = 0;
+        static int PLATEAU_UPPER_BOUNDRY_BORDER_Y = 0;
         static Dictionary<Rover, string> cases = new Dictionary<Rover, string>();
         /// <summary>
         /// With this solution implementation of the given case study, Rovers created with given Directions. Command sequences turn into Command objects and Commands executed with CommandExecutor. Border strategies implemented. If any rover tries to move out of the plateau border, depending on the chosen strategy an Exception could be thrown or the Rover could wait at the border.
@@ -27,7 +29,6 @@ namespace MarsRover
                 // Write case results for each case
                 Console.WriteLine("{0} {1} {2}", singleCase.Key.currentCoordinates.coordX, singleCase.Key.currentCoordinates.coordY, singleCase.Key.GetDirection());
             }
-
         }
         /// <summary>
         /// Read data from console until entered line is empty. Setup test cases.
@@ -36,11 +37,11 @@ namespace MarsRover
         {
             // Setup Plateau Borders
             string plateauBorders = Console.ReadLine();
-            PLATEAU_BORDER_X = int.Parse(plateauBorders.Split(' ')[0]);
-            PLATEAU_BORDER_Y = int.Parse(plateauBorders.Split(' ')[1]);
+            PLATEAU_UPPER_BOUNDRY_BORDER_X = int.Parse(plateauBorders.Split(' ')[0]);
+            PLATEAU_UPPER_BOUNDRY_BORDER_Y = int.Parse(plateauBorders.Split(' ')[1]);
 
             // Create movement strategy for rovers
-            BorderStrategy borderStrategy = new WaitAtTheBorderStrategy(PLATEAU_BORDER_X, PLATEAU_BORDER_Y);
+            BorderStrategy borderStrategy = new ThrowExceptionBorderStrategy(PLATEAU_LOWER_BOUNDRY_BORDER_X, PLATEAU_LOWER_BOUNDRY_BORDER_Y, PLATEAU_UPPER_BOUNDRY_BORDER_X, PLATEAU_UPPER_BOUNDRY_BORDER_Y);
 
             while(true)
             {

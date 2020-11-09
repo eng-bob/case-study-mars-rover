@@ -5,7 +5,7 @@ namespace MarsRover.Library.Strategy
 {
     public class WaitAtTheBorderStrategy : BorderStrategy
     {
-        public WaitAtTheBorderStrategy(int coordX, int coordY) : base(new Coordinates(coordX, coordY))
+        public WaitAtTheBorderStrategy(int lowerBoundryCoordX, int lowerBoundryCoordY, int upperBoundryCoordX, int upperBoundryCoordY) : base(new Coordinates(lowerBoundryCoordX, lowerBoundryCoordY), new Coordinates(upperBoundryCoordX, upperBoundryCoordY))
         {
 
         }
@@ -19,14 +19,14 @@ namespace MarsRover.Library.Strategy
         {
             Coordinates newCoordinates = currentCoordinates + currentDirection.GetMoveForwardCoordinates();
 
-            if (newCoordinates.coordX < 0)
-                newCoordinates.coordX = 0;
-            if (newCoordinates.coordX > borderCoordinates.coordX)
-                newCoordinates.coordX = borderCoordinates.coordX;
-            if (newCoordinates.coordY < 0)
-                newCoordinates.coordY = 0;
-            if (newCoordinates.coordY > borderCoordinates.coordY)
-                newCoordinates.coordY = borderCoordinates.coordY;
+            if (newCoordinates.coordX < lowerBoundryBorderCoordinates.coordX)
+                newCoordinates.coordX = lowerBoundryBorderCoordinates.coordX;
+            if (newCoordinates.coordX > upperBoundryBorderCoordinates.coordX)
+                newCoordinates.coordX = upperBoundryBorderCoordinates.coordX;
+            if (newCoordinates.coordY < lowerBoundryBorderCoordinates.coordY)
+                newCoordinates.coordY = lowerBoundryBorderCoordinates.coordY;
+            if (newCoordinates.coordY > upperBoundryBorderCoordinates.coordY)
+                newCoordinates.coordY = upperBoundryBorderCoordinates.coordY;
 
             return newCoordinates;
         }

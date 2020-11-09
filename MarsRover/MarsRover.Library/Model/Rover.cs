@@ -25,8 +25,8 @@ namespace MarsRover.Library.Model
         /// <returns>New instance of a Rover object</returns>
         public static Rover GetNewRover(int coordX, int coordY, char directionInfo, BorderStrategy chosenBorderStrategy)
         {
-            if (coordX < 0 || coordY < 0)
-                throw new NegativeCoordException();
+            if (coordX < chosenBorderStrategy.lowerBoundryBorderCoordinates.coordX || coordY < chosenBorderStrategy.lowerBoundryBorderCoordinates.coordY || coordX > chosenBorderStrategy.upperBoundryBorderCoordinates.coordX || coordY > chosenBorderStrategy.upperBoundryBorderCoordinates.coordY)
+                throw new OutOfPlateauException();
 
             Rover NewRover = new Rover
             {

@@ -79,11 +79,11 @@ namespace MarsRover.Library {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Coordinates cannot be negative..
+        ///   Looks up a localized string similar to Upper boundry coordinates cannot be less than lower boundry coordinates..
         /// </summary>
-        internal static string NegativeCoordExceptionMessage {
+        internal static string InvalidPlateauBorderCoordinatesExceptionMessage {
             get {
-                return ResourceManager.GetString("NegativeCoordExceptionMessage", resourceCulture);
+                return ResourceManager.GetString("InvalidPlateauBorderCoordinatesExceptionMessage", resourceCulture);
             }
         }
         

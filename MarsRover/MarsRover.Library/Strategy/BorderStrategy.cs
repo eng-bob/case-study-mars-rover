@@ -6,14 +6,16 @@ namespace MarsRover.Library.Strategy
 {
     public abstract class BorderStrategy
     {
-        protected Coordinates borderCoordinates;
+        public Coordinates lowerBoundryBorderCoordinates { get; set; }
+        public Coordinates upperBoundryBorderCoordinates { get; set; }
 
-        protected BorderStrategy(Coordinates borderCoordinates)
+        protected BorderStrategy(Coordinates lowerBoundryBorderCoordinates, Coordinates upperBoundryBorderCoordinates)
         {
-            if (borderCoordinates.coordX < 0 || borderCoordinates.coordY < 0)
-                throw new NegativeCoordException();
+            if (upperBoundryBorderCoordinates.coordX < lowerBoundryBorderCoordinates.coordX || upperBoundryBorderCoordinates.coordY < lowerBoundryBorderCoordinates.coordY)
+                throw new InvalidPlateauBorderCoordinatesException();
 
-            this.borderCoordinates = borderCoordinates;
+            this.lowerBoundryBorderCoordinates = lowerBoundryBorderCoordinates;
+            this.upperBoundryBorderCoordinates = upperBoundryBorderCoordinates;
         }
         public abstract Coordinates MoveToNewCoordinates(Coordinates currentCoordinates, DirectionClass currentDirection);
     }

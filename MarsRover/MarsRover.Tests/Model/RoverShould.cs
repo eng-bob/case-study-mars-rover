@@ -7,21 +7,23 @@ namespace MarsRover.Tests.Model
 {
     public class RoverShould
     {
-        private static readonly int PlateauCoordX = 5;
-        private static readonly int PlateauCoordY = 5;
+        private static readonly int plateauLowerCoordX = 0;
+        private static readonly int plateauLowerCoordY = 0;
+        private static readonly int plateauUpperCoordX = 5;
+        private static readonly int plateauUpperCoordY = 5;
 
         [Fact]
-        public void ThrowNegativeCoordExceptionWhenGetNewRoverCoordinatesAreNegative()
+        public void ThrowOutOfPlateauExceptionWhenGetNewRoverCoordinatesAreOutOfBounds()
         {
             int coordX = -1;
             int coordY = 0;
             char directionInfo = 'N';
-            BorderStrategy borderStrategy = new WaitAtTheBorderStrategy(PlateauCoordX, PlateauCoordY);
+            BorderStrategy borderStrategy = new WaitAtTheBorderStrategy(plateauLowerCoordX, plateauLowerCoordY, plateauUpperCoordX, plateauUpperCoordY);
 
             var result = Record.Exception(() => Rover.GetNewRover(coordX, coordY, directionInfo, borderStrategy));
 
             Assert.NotNull(result);
-            Assert.IsType<NegativeCoordException>(result);
+            Assert.IsType<OutOfPlateauException>(result);
         }
 
         [Fact]
@@ -30,7 +32,7 @@ namespace MarsRover.Tests.Model
             int coordX = 1;
             int coordY = 0;
             char directionInfo = 'N';
-            BorderStrategy borderStrategy = new WaitAtTheBorderStrategy(PlateauCoordX, PlateauCoordY);
+            BorderStrategy borderStrategy = new WaitAtTheBorderStrategy(plateauLowerCoordX, plateauLowerCoordY, plateauUpperCoordX, plateauUpperCoordY);
 
             var result = Rover.GetNewRover(coordX, coordY, directionInfo, borderStrategy);
 
@@ -44,7 +46,7 @@ namespace MarsRover.Tests.Model
             int coordX = 1;
             int coordY = 0;
             char directionInfo = 'N';
-            BorderStrategy borderStrategy = new WaitAtTheBorderStrategy(PlateauCoordX, PlateauCoordY);
+            BorderStrategy borderStrategy = new WaitAtTheBorderStrategy(plateauLowerCoordX, plateauLowerCoordY, plateauUpperCoordX, plateauUpperCoordY);
             var rover = Rover.GetNewRover(coordX, coordY, directionInfo, borderStrategy);
 
             rover.Move();
@@ -60,7 +62,7 @@ namespace MarsRover.Tests.Model
             int coordX = 1;
             int coordY = 0;
             char directionInfo = 'N';
-            BorderStrategy borderStrategy = new WaitAtTheBorderStrategy(PlateauCoordX, PlateauCoordY);
+            BorderStrategy borderStrategy = new WaitAtTheBorderStrategy(plateauLowerCoordX, plateauLowerCoordY, plateauUpperCoordX, plateauUpperCoordY);
             var rover = Rover.GetNewRover(coordX, coordY, directionInfo, borderStrategy);
 
             rover.TurnLeft();
@@ -75,7 +77,7 @@ namespace MarsRover.Tests.Model
             int coordX = 1;
             int coordY = 0;
             char directionInfo = 'N';
-            BorderStrategy borderStrategy = new WaitAtTheBorderStrategy(PlateauCoordX, PlateauCoordY);
+            BorderStrategy borderStrategy = new WaitAtTheBorderStrategy(plateauLowerCoordX, plateauLowerCoordY, plateauUpperCoordX, plateauUpperCoordY);
             var rover = Rover.GetNewRover(coordX, coordY, directionInfo, borderStrategy);
 
             rover.TurnRight();

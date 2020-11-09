@@ -41,12 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\InvalidPlateauBorderCoordinatesException.cs" />
     <Compile Include="Model\Command\CommandExecutor.cs" />
     <Compile Include="Enum\Commands.cs" />
     <Compile Include="Enum\Directions.cs" />
     <Compile Include="Exceptions\InvalidCommandException.cs" />
     <Compile Include="Exceptions\InvalidDirectionException.cs" />
-    <Compile Include="Exceptions\NegativeCoordException.cs" />
     <Compile Include="Exceptions\OutOfPlateauException.cs" />
     <Compile Include="Model\Command\CommandFactory.cs" />
     <Compile Include="Model\Command\ICommand.cs" />

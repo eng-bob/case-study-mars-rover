@@ -8,11 +8,21 @@ namespace MarsRover.Tests.Strategy
 {
     public class ThrowExceptionBorderStrategyShould
     {
-        private static readonly int plateauCoordX = 5;
-        private static readonly int plateauCoordY = 5;
+        private static readonly int plateauLowerCoordX = 0;
+        private static readonly int plateauLowerCoordY = 0;
+        private static readonly int plateauUpperCoordX = 5;
+        private static readonly int plateauUpperCoordY = 5;
         private static readonly Coordinates coordinates = new Coordinates(0, 0);
-        private static readonly BorderStrategy borderStrategy = new ThrowExceptionBorderStrategy(plateauCoordX, plateauCoordY);
+        private static readonly BorderStrategy borderStrategy = new ThrowExceptionBorderStrategy(plateauLowerCoordX, plateauLowerCoordY, plateauUpperCoordX, plateauUpperCoordY);
 
+        [Fact]
+        public void ThrowInvalidPlateauBorderCoordinatesExceptionWhenCoordinatesAreInvalid()
+        {
+            var result = Record.Exception(() => new ThrowExceptionBorderStrategy(0, 1, 0, 0));
+
+            Assert.NotNull(result);
+            Assert.IsType<InvalidPlateauBorderCoordinatesException>(result);
+        }
         [Fact]
         public void ThrowOutOfPlateauExceptionWhenMoveToNewCoordinatesExceedsBorders()
         {

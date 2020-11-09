@@ -6,7 +6,7 @@ namespace MarsRover.Library.Strategy
 {
     public class ThrowExceptionBorderStrategy : BorderStrategy
     {
-        public ThrowExceptionBorderStrategy(int coordX, int coordY) : base(new Coordinates(coordX, coordY))
+        public ThrowExceptionBorderStrategy(int lowerBoundryCoordX, int lowerBoundryCoordY, int upperBoundryCoordX, int upperBoundryCoordY) : base(new Coordinates(lowerBoundryCoordX, lowerBoundryCoordY), new Coordinates(upperBoundryCoordX, upperBoundryCoordY))
         {
 
         }
@@ -20,7 +20,7 @@ namespace MarsRover.Library.Strategy
         {
             Coordinates newCoordinates = currentCoordinates + currentDirection.GetMoveForwardCoordinates();
 
-            if (newCoordinates.coordX < 0 || newCoordinates.coordY < 0 || newCoordinates.coordX > borderCoordinates.coordX || newCoordinates.coordY > borderCoordinates.coordY)
+            if (newCoordinates.coordX < lowerBoundryBorderCoordinates.coordX || newCoordinates.coordY < lowerBoundryBorderCoordinates.coordY || newCoordinates.coordX > upperBoundryBorderCoordinates.coordX || newCoordinates.coordY > upperBoundryBorderCoordinates.coordY)
                 throw new OutOfPlateauException();
 
             return newCoordinates;

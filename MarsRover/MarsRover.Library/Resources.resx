@@ -123,8 +123,8 @@
   <data name="InvalidDirectionExceptionMessage" xml:space="preserve">
     <value>Direction is invalid. Possible directions are 'N', 'E', 'S' and 'W'.</value>
   </data>
-  <data name="NegativeCoordExceptionMessage" xml:space="preserve">
-    <value>Coordinates cannot be negative.</value>
+  <data name="InvalidPlateauBorderCoordinatesExceptionMessage" xml:space="preserve">
+    <value>Upper boundry coordinates cannot be less than lower boundry coordinates.</value>
   </data>
   <data name="OutOfPlateauExceptionMessage" xml:space="preserve">
     <value>Rover is out of plateau borders.</value>
